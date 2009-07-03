@@ -31,6 +31,10 @@
 ;;
 ;;
 ;; * Usage
+;; Just put the code like below into your .emacs:
+;;
+;; (require 'search-web)
+;; 
 ;; Normal useing is M-x search-web-at-point or search-web-region.
 ;; But the way is not useability.
 ;;
@@ -38,11 +42,11 @@
 ;;
 ;; For example
 ;; CSS ref search
-;; (define-key cssm-mode-map (kbd "C-c s r") (lambda () (interactive) (search-web-at-point "s")))
+;; (define-key cssm-mode-map (kbd "C-c C-s r") (lambda () (interactive) (search-web-at-point "s")))
 ;; Press C-c s r post word on cursor sitepoint reference page at css-mode.
 ;;
 ;; EmacsWiki search
-;; (define-key emacs-lisp-mode-map (kbd "C-c s e") (lambda () (interactive) (search-web-at-point "ew")))
+;; (define-key emacs-lisp-mode-map (kbd "C-c C-s e") (lambda () (interactive) (search-web-at-point "ew")))
 ;;
 ;; Google search at region
 ;; (define-key global-map (kbd "C-c C-s g") (lambda () (interactive) (search-web-region "g")))
