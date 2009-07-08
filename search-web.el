@@ -53,24 +53,23 @@
 
 
 (defvar search-engines
-  '(("s" . "http://reference.sitepoint.com/search?q=%s")
-	("g" . "http://www.google.com/search?q=%s")
-	("gj" . "http://www.google.com/search?hl=ja&q=%s")
-	("ge" . "http://www.google.com/search?hl=en&q=%s")
-	("m" . "http://maps.google.co.jp/maps?hl=ja&q=%s")
-	("y" . "http://search.yahoo.co.jp/search?p=%s")
-	("yt" . "http://www.youtube.com/results?search_type=&search_query=%s&aq=f")
-	("tw" . "http://search.twitter.com/search?q=%s")
+  '(("sitepoint" . "http://reference.sitepoint.com/search?q=%s")
+	("google" . "http://www.google.com/search?q=%s")
+	("google ja" . "http://www.google.com/search?hl=ja&q=%s")
+	("google en" . "http://www.google.com/search?hl=en&q=%s")
+	("google maps" . "http://maps.google.co.jp/maps?hl=ja&q=%s")
+	("youtube" . "http://www.youtube.com/results?search_type=&search_query=%s&aq=f")
+	("twitter" . "http://search.twitter.com/search?q=%s")
 	("goo" . "http://dictionary.goo.ne.jp/srch/all/%s/m0u/")
-	("a" . "http://www.answers.com/topic/%s")
-	("ew" . "http://www.google.com/cse?cx=004774160799092323420%%3A6-ff2s0o6yi&q=%s&sa=Search")
-	("eow" . "http://eow.alc.co.jp/%s/UTF-8/")
-	("z" . "http://www.amazon.com/s/url=search-alias%%3Daps&field-keywords=%s")
-	("zj" . "http://www.amazon.co.jp/gp/search?index=blended&field-keywords=%s")
-	("y" . "http://search.yahoo.com/search?p=%s")
-	("yj" . "http://search.yahoo.co.jp/search?p=%s")
-	("we" . "http://www.wikipedia.org/search-redirect.php?search=%s&language=en")
-	("wj" . "http://www.wikipedia.org/search-redirect.php?search=%s&language=ja"))
+	("answers" . "http://www.answers.com/topic/%s")
+	("emacswiki" . "http://www.google.com/cse?cx=004774160799092323420%%3A6-ff2s0o6yi&q=%s&sa=Search")
+	("eijiro" . "http://eow.alc.co.jp/%s/UTF-8/")
+	("amazon" . "http://www.amazon.com/s/url=search-alias%%3Daps&field-keywords=%s")
+	("amazon jp" . "http://www.amazon.co.jp/gp/search?index=blended&field-keywords=%s")
+	("yahoo" . "http://search.yahoo.com/search?p=%s")
+	("yahoo jp" . "http://search.yahoo.co.jp/search?p=%s")
+	("wikipedia en" . "http://www.wikipedia.org/search-redirect.php?search=%s&language=en")
+	("wikipedia ja" . "http://www.wikipedia.org/search-redirect.php?search=%s&language=ja"))
   "A list is search engines list. keys engines nick, and value is search engine query.
 Search word %s. In formatting url-hexify. Use %% to put a single % into output.")
 
@@ -78,17 +77,40 @@ Search word %s. In formatting url-hexify. Use %% to put a single % into output."
   (browse-url
    (format (cdr (assoc engine search-engines)) (url-hexify-string word))))
 
-(defun search-web-at-point (engine)
-  "search web search engine for word on cursor.
-arg is search-engines keys."
-  (interactive "sSearch engine: ")
-  (search-web engine (substring-no-properties (thing-at-point 'word))))
+;; (defun search-web-at-point (engine)
+;;   "search web search engine for word on cursor.
+;; arg is search-engines keys."
+;;   (interactive "sSearch engine: ")
+;;   (search-web engine (substring-no-properties (thing-at-point 'word))))
 
-(defun search-web-region (engine)
-  (interactive "sSearch engine: ")
-  (let ((beg (mark))
-        (end (point)))
-	(search-web engine (buffer-substring-no-properties beg end))))
+;; (defun search-web-region (engine)
+;;   (interactive "sSearch engine: ")
+;;   (let ((beg (mark))
+;;         (end (point)))
+;; 	(search-web engine (buffer-substring-no-properties beg end))))
+
+;; idea for http://d.hatena.ne.jp/x244/20090704/1246649218
+(defun make-search-engine-name-list ()
+  (let ((result))
+    (dolist (engine search-engines)
+      (add-to-list 'result (car engine)))
+    result))
+
+(defun search-web-at-point ()
+  (interactive)
+  (let* ((completion-ignore-case t)
+         (engine (completing-read "Search Engine: "
+                                 (make-search-engine-name-list) nil t)))
+  (search-web engine (substring-no-properties (thing-at-point 'word)))))
+
+(defun search-web-region ()
+  (interactive)
+  (let* ((completion-ignore-case t)
+         (beg (mark))
+         (end (point))
+         (engine (completing-read "Search Engine: "
+                                  (make-search-engine-name-list) nil t)))
+    (search-web engine (buffer-substring-no-properties beg end))))
 
 (provide 'search-web)
 
