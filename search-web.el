@@ -1,5 +1,5 @@
-;;; search-web.el --- 
-;; -*- coding: utf-8; mode:emacs-lisp -*-
+;;; search-web.el --- Post web search queries using `browse-url'.
+;; -*- coding: utf-8; -*-
 
 ;; Copyright (C) 2009 Tomoya Otake
 ;; Author: Tomoya Otake <tomoya.ton@gmail.com>
@@ -19,8 +19,11 @@
 ;; Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 ;; Boston, MA 02111-1307, USA.
 
+;;; Commentary:
+
 ;; * Description
-;; search-web.el is posting search query browse-url.
+
+;; Post web search queries using `browse-url'.
 ;; 
 ;; There is useing style 2 way.
 ;; One is search-web-at-point.
@@ -51,6 +54,7 @@
 ;; Google search at region
 ;; (define-key global-map (kbd "C-c C-s g") (lambda () (interactive) (search-web-region "g")))
 
+;;; Code:
 
 (defvar search-engines
   '(("sitepoint" . "http://reference.sitepoint.com/search?q=%s")
