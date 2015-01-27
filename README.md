@@ -1,14 +1,15 @@
 search-web.el
 =========
-
-The following example use extra extension `popwin` and add configs.
-
-![Alt Text](https://github.com/nomaddo/search-web-gif/blob/master/search-web.gif)
-
-
 Description
 -----------
 Post web search queries using `browse-url'.
+
+Screenshots
+-----------
+
+![Alt Text](https://github.com/nomaddo/search-web-gif/blob/master/search-web.gif)
+
+The upper example use extra extension `popwin` and add configs shown below.
 
 Installation:
 -----------
