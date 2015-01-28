@@ -41,7 +41,7 @@
 ;;
 ;; * usage:
 ;;
-;; search-web: a main function
+;; search-web-dwim: a main function
 ;;
 ;; Search selected words in a browser if you select a region.
 ;; Search at point if not.
@@ -60,10 +60,16 @@
 ;;   (unless (get-buffer-window "*eww*")
 ;;     (pop-to-buffer "*eww*")))
 ;;
-
+;; (push "*eww*" popwin:special-display-config)
+;; (push "*w3m*" popwin:special-display-config)
+;;
 ;;; Code:
 
+(eval-when-compile (require 'cl))
+;; for destructuring-bind and case
+
 (defvar search-web-browser-functions
+  ;; this originally came from browse-url-browser-function's :type
   '(choice
     (function-item :tag "Emacs W3" :value  browse-url-w3)
     (function-item :tag "W3 in another Emacs via `gnudoit'"
@@ -201,6 +207,7 @@ nil represents default browser."
   )
 
 (defun search-web-dwim (engine)
+  "Seach words you select as region or at point."
   (search-web-interactive)
   (cond
    ((region-active-p) (search-web-region engine))
