@@ -3,6 +3,8 @@
 ;; -*- coding: utf-8; -*-
 
 ;; Copyright (C) 2009 Tomoya Otake
+;;               2014 nomaddo
+
 ;; Author: Tomoya Otake <tomoya.ton@gmail.com>
 
 ;; This file is free software; you can redistribute it and/or modify
