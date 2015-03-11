@@ -1,11 +1,11 @@
 ;;; search-web.el --- Post web search queries using `browse-url'.
-;; Version: 20150127
 ;; -*- coding: utf-8; -*-
 
 ;; Copyright (C) 2009 Tomoya Otake
 ;;               2014 nomaddo
 
 ;; Author: Tomoya Otake <tomoya.ton@gmail.com>
+;; Version: 1.0
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published
