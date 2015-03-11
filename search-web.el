@@ -145,6 +145,7 @@
     ("wikipedia ja" "http://www.wikipedia.org/search-redirect.php?search=%s&language=ja" nil)
     ("stackoveflow en" "http://stackoverflow.com/search?q=%s" nil)
     ("stackoveflow ja" "http://ja.stackoverflow.com/search?q=%s" nil)
+    ("duck" "https://duckduckgo.com/?q=%s" nil)
     )
 
   "A list of search engines. This is a list of lists which elements are
