@@ -5,7 +5,7 @@
 ;;               2014 nomaddo
 
 ;; Author: Tomoya Otake <tomoya.ton@gmail.com>
-;; Version: 1.0
+;; Version: 1.1
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published
